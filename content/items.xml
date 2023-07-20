@@ -1,0 +1,12 @@
+<items gfxroot="gfx/items/" version = "1">
+
+    <!--[PASSIVE ITEMS]-->
+
+    <passive name = "Green Candle" description = "An odd kind of wax" gfx = "collectibles_nw_greencandle.png" />
+    <passive name = "Gracious Shaker" description = "I can't believe this" gfx = "collectibles_nw_graciousshaker.png" cache = "damage" />
+    <passive name = "Coffee" description = "Speed up" gfx = "collectibles_nw_coffee.png" cache = "speed" />
+    <passive name = "Slop" description = "We will not be eating" gfx = "collectibles_nw_slop.png" maxhearts = "1" hearts = "-1" />
+    <passive name = "Pepper Spray" description = "Tears up" gfx = "collectibles_nw_pepperspray.png" />
+    <passive name = "Vomit Cake" description = "HP down... then it's up" gfx = "collectibles_nw_vomitcake.png" maxhearts = "1" hearts = "2" />
+    <passive name = "Steam Jumper" description = "Long enough to become the hero!" gfx = "collectibles_nw_steamjumper.png" />
+</items>
