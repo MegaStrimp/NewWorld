@@ -8,5 +8,5 @@
     <passive name = "Slop" description = "We will not be eating" gfx = "collectibles_nw_slop.png" maxhearts = "1" hearts = "-1" />
     <passive name = "Pepper Spray" description = "Tears up" gfx = "collectibles_nw_pepperspray.png" />
     <passive name = "Vomit Cake" description = "HP down... then it's up" gfx = "collectibles_nw_vomitcake.png" maxhearts = "1" hearts = "2" />
-    <passive name = "Steam Jumper" description = "Long enough to become the hero!" gfx = "collectibles_nw_steamjumper.png" />
+    <passive quality = "4" name = "Steam Jumper" description = "Long enough to become the hero!" gfx = "collectibles_nw_steamjumper.png" />
 </items>

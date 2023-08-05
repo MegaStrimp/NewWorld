@@ -1,20 +1,23 @@
---[REGISTER]--
+--  [VARIABLE SETUP]
 
 local NewWorld = RegisterMod("New World", 1)
 
---[ITEM SETUPS]--
+--[ITEM SETUPS]
 
 NewWorld.COLLECTIBLE_GREEN_CANDLE = Isaac.GetItemIdByName("Green Candle")
 NewWorld.COLLECTIBLE_GRACIOUS_SHAKER = Isaac.GetItemIdByName("Gracious Shaker")
 NewWorld.COLLECTIBLE_COFFEE = Isaac.GetItemIdByName("Coffee")
 NewWorld.COLLECTIBLE_SLOP = Isaac.GetItemIdByName("Slop")
+NewWorld.COLLECTIBLE_PEPPERSPRAY = Isaac.GetItemIdByName("Pepper Spray")
+NewWorld.COLLECTIBLE_VOMITCAKE = Isaac.GetItemIdByName("Vomit Cake")
+NewWorld.COLLECTIBLE_STEAMJUMPER = Isaac.GetItemIdByName("Steam Jumper")
 
---[ITEM FUNCTIONALITIES]--
+--[ITEM FUNCTIONALITIES]
 
 function NewWorld:EvaluateCache(player, cacheFlags)
 	if cacheFlags & CacheFlag.CACHE_DAMAGE == CacheFlag.CACHE_DAMAGE then
   
-    --[Gracious Shaker]--
+    --[Gracious Shaker]
     
 		local itemCount = player:GetCollectibleNum(NewWorld.COLLECTIBLE_GRACIOUS_SHAKER)
 		local valueToAdd = 1 * itemCount
@@ -45,13 +48,34 @@ function NewWorld:onUpdate()
 
     --[CREATE ITEM IN PEDESTAL]--
 
-    Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, NewWorld.COLLECTIBLE_SLOP, Vector(320, 300), Vector(0, 0), nil)
+    Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, NewWorld.COLLECTIBLE_STEAMJUMPER, Vector(320, 300), Vector(0, 0), nil)
   end
 
-  --[Green Candle]--
-  
   for playerNum = 0, Game():GetNumPlayers() do
     local player = Game():GetPlayer(playerNum)
+
+    --[Steam Jumper]--
+
+    if player:HasCollectible(NewWorld.COLLECTIBLE_STEAMJUMPER) then
+      if ((Game():GetFrameCount() % 15) == 0) then
+        player:UseActiveItem(CollectibleType.COLLECTIBLE_BUTTER_BEAN, false, false, true, false)
+        if ((Input.IsActionPressed(ButtonAction.ACTION_LEFT,0)) or (Input.IsActionPressed(ButtonAction.ACTION_RIGHT,0)) or (Input.IsActionPressed(ButtonAction.ACTION_UP,0)) or (Input.IsActionPressed(ButtonAction.ACTION_DOWN,0))) then
+        else
+          player:UseActiveItem(CollectibleType.COLLECTIBLE_HOW_TO_JUMP, false, false, true, false)
+        end
+      end
+
+      if ((Game():GetFrameCount() % 42) == 0) then
+        player:UseActiveItem(CollectibleType.COLLECTIBLE_BEAN, false, false, true, false)
+      end
+
+      if ((Game():GetFrameCount() % 74) == 0) then
+        player:UseActiveItem(CollectibleType.COLLECTIBLE_MEGA_BEAN, false, false, true, false)
+      end
+    end
+
+    --[Green Candle]--
+    
     if player:HasCollectible(NewWorld.COLLECTIBLE_GREEN_CANDLE) then
       if not NewWorld.HasGreenCandle then --Initial pickup
         player:AddSoulHearts(2)
