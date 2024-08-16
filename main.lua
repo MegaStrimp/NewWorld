@@ -5,6 +5,7 @@
 --  [VARIABLE SETUP]
 
 local NewWorld = RegisterMod("New World", 1)
+local currentTime = Game():GetFrameCount();
 
 --  [ITEM SETUPS]
 
@@ -44,7 +45,7 @@ function NewWorld:onUpdate()
 
   --  [FIRST FRAME OF THE RUN]
 
-  if Game():GetFrameCount() == 1 then
+  if (currentTime == 1) then
 
     --  [SET ITEM VARIABLES]
 
@@ -64,21 +65,22 @@ function NewWorld:onUpdate()
 
     if player:HasCollectible(NewWorld.COLLECTIBLE_STEAMJUMPER)
     then
-      if ((Game():GetFrameCount() % 15) == 0)
+      if ((currentTime % 15) == 0)
       then
         player:UseActiveItem(CollectibleType.COLLECTIBLE_BUTTER_BEAN, false, false, true, false)
-        if ((Input.IsActionPressed(ButtonAction.ACTION_LEFT,0)) or (Input.IsActionPressed(ButtonAction.ACTION_RIGHT,0)) or (Input.IsActionPressed(ButtonAction.ACTION_UP,0)) or (Input.IsActionPressed(ButtonAction.ACTION_DOWN,0))) then
+        if ((Input.IsActionPressed(ButtonAction.ACTION_LEFT,0)) or (Input.IsActionPressed(ButtonAction.ACTION_RIGHT,0)) or (Input.IsActionPressed(ButtonAction.ACTION_UP,0)) or (Input.IsActionPressed(ButtonAction.ACTION_DOWN,0)))
+        then
         else
           player:UseActiveItem(CollectibleType.COLLECTIBLE_HOW_TO_JUMP, false, false, true, false)
         end
       end
 
-      if ((Game():GetFrameCount() % 42) == 0)
+      if ((currentTime % 42) == 0)
       then
         player:UseActiveItem(CollectibleType.COLLECTIBLE_BEAN, false, false, true, false)
       end
 
-      if ((Game():GetFrameCount() % 74) == 0)
+      if ((currentTime % 74) == 0)
       then
         player:UseActiveItem(CollectibleType.COLLECTIBLE_MEGA_BEAN, false, false, true, false)
       end
